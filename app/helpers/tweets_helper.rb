@@ -2,9 +2,6 @@ module TweetsHelper
 
 	def get_Tagged(tweet)
 		message_arr = Array.new
-	    tweet = Tweet.create(tweet_params)
-
-
 	    message_arr = tweet.message.split
 
 	    message_arr.each_with_index do |word, index|
