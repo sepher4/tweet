@@ -1,0 +1,5 @@
+<%= link_to "Following", following_path(id: current_user.id), class: "btn btn-primary" %>
+
+<%= link_to "Followers", followers_path(id: current_user.id), class: "btn btn-primary" %>
+
+<%= render 'user_list' %>

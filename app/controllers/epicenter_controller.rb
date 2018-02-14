@@ -1,4 +1,6 @@
 class EpicenterController < ApplicationController
+
+  include EpicenterHelper
   
   def feed
   	@following_tweets = []
@@ -10,6 +12,9 @@ class EpicenterController < ApplicationController
       end
 
     end
+
+    trending
+
   end
 
   def show_user
@@ -33,6 +38,34 @@ class EpicenterController < ApplicationController
 
   def tag_tweets
     @tag = Tag.find(params[:id])
+  end
+
+  def all_users
+    @users = User.all
+  end
+
+  def following
+    @user = User.find(params[:id])
+    @users = []
+
+    User.all.each do |user|
+      if @user.following.include?(user.id)
+        @users.push(user)
+      end
+    end
+  end
+    
+  def followers
+    @user = User.find(params[:id])
+    @users = []
+
+
+    User.all.each do |user|
+      if user.following.include?(@user.id)
+        @users.push(user)
+      end
+    end
+    
   end
 
 end
